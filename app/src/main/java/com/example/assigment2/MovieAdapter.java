@@ -1,5 +1,6 @@
 package com.example.assigment2;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
         final Movie movie = movieList.get(i);
         myViewHolder.id.setText("Movie Record #" + movie.getId());
         myViewHolder.name.setText(movie.getMovieName());
@@ -38,6 +40,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             @Override
             public void onClick(View v) {
                 movieList.remove(movie);
+                Toast.makeText(v.getContext(),"Record deleted",Toast.LENGTH_LONG).show();
+
                 notifyDataSetChanged();
             }
         });

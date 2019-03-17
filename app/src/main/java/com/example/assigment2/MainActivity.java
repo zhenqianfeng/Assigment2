@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         movieList.addAll(generateData(unique_id));
 
+        unique_id = movieList.size()+1;
+
         b_addRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,32 +58,27 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode==RESULT_OK && requestCode==1){
-            if(data.hasExtra("message")){
+            if(data.hasExtra("message")) {
                 String newMovieName = data.getStringExtra("newName");
-                Float newMovieRating = data.getFloatExtra("newRating",0);
+                Float newMovieRating = data.getFloatExtra("newRating", 0);
 
-                Movie newMovie = new Movie(unique_id++,newMovieName,newMovieRating);
+                Movie newMovie = new Movie(unique_id++, newMovieName, newMovieRating);
                 movieList.add(newMovie);
-                Toast.makeText(this, "Record added", Toast.LENGTH_LONG).show();
-                refreshView();
+                Toast.makeText(this, "Record added successfully!", Toast.LENGTH_LONG).show();
+                refreshView(); }
+                else {
+                   Toast.makeText(this,"Record cancelled",Toast.LENGTH_LONG).show();
+                }
 
-
-
-
-/*                if (data.getStringExtra("message")=="save"){
-                }*/
-            }
         }
     }
 
     protected ArrayList<Movie> generateData(int id){
         ArrayList<Movie> movies = new ArrayList<>();
         Movie m;
-        m = new Movie(id++,"How to train your dragon", 3);
+        m = new Movie(id++,"How to train your dragon", 4);
         movies.add(m);
-        m = new Movie(id++,"Mocking Jay", 4);
-        movies.add(m);
-        m = new Movie(id++,"Brave Heart", 5);
+        m = new Movie(id++,"Brave Heart", 4.5f);
         movies.add(m);
         m = new Movie(id++,"Forest Gump", 5);
         movies.add(m);
