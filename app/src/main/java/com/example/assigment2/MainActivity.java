@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected ArrayList<Movie> generateData(int id){
         ArrayList<Movie> movies = new ArrayList<>();
         Movie m;
-        m = new Movie(id++,"Walking Dead", 3);
+        m = new Movie(id++,"How to train your dragon", 3);
         movies.add(m);
         m = new Movie(id++,"Mocking Jay", 4);
         movies.add(m);

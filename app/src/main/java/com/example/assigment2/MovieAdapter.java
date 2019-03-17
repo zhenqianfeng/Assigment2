@@ -29,7 +29,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         final Movie movie = movieList.get(i);
-        myViewHolder.id.setText(movie.getId()+"");
+        myViewHolder.id.setText("Movie Record #" + movie.getId());
         myViewHolder.name.setText(movie.getMovieName());
         myViewHolder.rating.setRating(movie.getRating());
 
@@ -38,6 +38,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             @Override
             public void onClick(View v) {
                 movieList.remove(movie);
+                notifyDataSetChanged();
             }
         });
            }
