@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 public class AddRecordActivity extends AppCompatActivity {
 
@@ -25,11 +26,15 @@ public class AddRecordActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                i.putExtra("message","save");
-                i.putExtra("newName",movieName.getText().toString());
-                i.putExtra("newRating", movieRating.getRating());
-                setResult(RESULT_OK,i);
-                finish();
+                if (!movieName.getText().toString().isEmpty()) {
+                    i.putExtra("message", "save");
+                    i.putExtra("newName", movieName.getText().toString());
+                    i.putExtra("newRating", movieRating.getRating());
+                    setResult(RESULT_OK, i);
+                    finish();
+                } else {
+                    Toast.makeText(v.getContext(),"Please enter movie name",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
