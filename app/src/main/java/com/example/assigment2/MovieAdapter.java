@@ -29,7 +29,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int i) {
         final Movie movie = movieList.get(i);
         myViewHolder.id.setText("Movie Record #" + movie.getId());
         myViewHolder.name.setText(movie.getMovieName());
@@ -39,13 +39,22 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         myViewHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                movieList.remove(movie);
+                movieList.remove(i);
                 Toast.makeText(v.getContext(),"Record deleted",Toast.LENGTH_LONG).show();
 
                 notifyDataSetChanged();
             }
         });
-           }
+
+        myViewHolder.rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                movie.setRating(myViewHolder.rating.getRating());
+                movieList.set(i,movie);
+                Toast.makeText(ratingBar.getContext(),"Rating changed",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 
 
