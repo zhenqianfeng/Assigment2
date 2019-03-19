@@ -64,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Movie newMovie = new Movie(unique_id++, newMovieName, newMovieRating);
                 movieList.add(newMovie);
+                refreshView();
                 Toast.makeText(this, "Record added successfully!", Toast.LENGTH_LONG).show();
-                refreshView(); }
+                }
                 else {
                    Toast.makeText(this,"Record cancelled",Toast.LENGTH_LONG).show();
                 }
